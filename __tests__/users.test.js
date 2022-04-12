@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const UserService = require('../lib/services/UserService');
 
 describe('resourcery-backend routes', () => {
   beforeEach(() => {
@@ -24,5 +25,18 @@ describe('resourcery-backend routes', () => {
       id: expect.any(String),
       username: 'cake',
     });
+  });
+
+  it('should sign in a user', async () => {
+    const userObj = {
+      username: 'rose',
+      password: 'petal',
+    };
+
+    const user = await UserService.insert(userObj);
+
+    const res = await request(app).post('/api/v1/users/session').send(userObj);
+
+    expect(res.body).toEqual({ message: 'you are signed in!', user });
   });
 });
