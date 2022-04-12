@@ -11,4 +11,18 @@ describe('resourcery-backend routes', () => {
   afterAll(() => {
     pool.end();
   });
+
+  it('should sign up a user', async () => {
+    const newUser = {
+      username: 'cake',
+      password: '12345',
+    };
+
+    const res = await request(app).post('/api/v1/users').send(newUser);
+
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      username: 'cake',
+    });
+  });
 });
