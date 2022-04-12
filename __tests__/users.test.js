@@ -37,6 +37,22 @@ describe('resourcery-backend routes', () => {
 
     const res = await request(app).post('/api/v1/users/session').send(userObj);
 
-    expect(res.body).toEqual({ message: 'you are signed in!', user });
+    expect(res.body).toEqual({ message: 'You are signed in!', user });
   });
+
+  it('should sign out a user', async () => {
+    const agent= request.agent(app)
+    const newUser = {
+      username: 'cake',
+      password: '12345',
+    };
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const res = await agent.delete('/api/v1/users/session')
+
+    expect(res.body).toEqual({ message: 'You are signed out.'})
+  })
 });
