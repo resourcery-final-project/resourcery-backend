@@ -25,23 +25,29 @@ describe('resourcery-backend routes', () => {
 
     await agent.post('/api/v1/users/session').send(newUser);
 
-    const res = await agent.post('/api/v1/fruit-trees').send({
-      userId: '1',
+    const res = await agent.post('/api/v1/resources').send({
       latitude: '42.069690',
       longitude: '666.666666',
-      type: 'Apple',
+      type: 'apple',
       description: 'Has Apples',
-      permission: true,
+      userId: '1',
+      image: 'www.image.com',
+      hours: '12p - 8p',
+      category: 'Fruit Tree',
+      available: true,
     });
 
     expect(res.body).toEqual({
       id: expect.any(String),
-      userId: '1',
       latitude: '42.069690',
       longitude: '666.666666',
-      type: 'Apple',
+      type: 'apple',
       description: 'Has Apples',
-      permission: true,
+      userId: '1',
+      image: 'www.image.com',
+      hours: '12p - 8p',
+      category: 'Fruit Tree',
+      available: true,
     });
   });
 });
