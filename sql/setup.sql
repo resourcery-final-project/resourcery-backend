@@ -22,3 +22,8 @@ CREATE TABLE resources (
     available BOOLEAN,
     category TEXT NOT NULL
 );
+
+INSERT INTO resources (latitude, longitude, type, description, image, hours, available, category)
+
+VALUES
+    ('42.069690', '666.666666', 'apple', 'Has Apples', 'www.image.com', '12p - 8p', true, 'Fruit Tree')

@@ -50,4 +50,25 @@ describe('resourcery-backend routes', () => {
       available: true,
     });
   });
+
+  it('allows a logged in user to get all of their resources', async () => {
+    const agent = request.agent(app);
+
+    const newUser = {
+      username: 'watson',
+      password: 'isadog',
+    };
+
+    await UserService.insert(newUser);
+
+    let res = await agent.get('/api/v1/resources');
+
+    expect(res.status).toEqual(401);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    res = await agent.get('/api/v1/resources');
+
+    expect(res.status).toEqual(200);
+  });
 });
