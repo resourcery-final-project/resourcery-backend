@@ -13,7 +13,7 @@ describe('resourcery-backend routes', () => {
     pool.end();
   });
 
-  it('should allow a signed in user to create a fruit tree resource', async () => {
+  it('should allow a signed in user to create a resource', async () => {
     const agent = request.agent(app);
 
     const newUser = {
@@ -70,5 +70,9 @@ describe('resourcery-backend routes', () => {
     res = await agent.get('/api/v1/resources');
 
     expect(res.status).toEqual(200);
+  });
+
+  it('an authenticated user can edit one of their resources', async () => {
+    const agent = request.agent(app);
   });
 });
