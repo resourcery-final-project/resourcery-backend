@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 
 DROP TABLE IF EXISTS users CASCADE;
+
 DROP TABLE IF EXISTS resources CASCADE;
 
 CREATE TABLE users (
@@ -10,7 +11,9 @@ CREATE TABLE users (
     password_hash TEXT NOT NULL
 );
 
+
 CREATE TABLE resources (
+
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id BIGINT REFERENCES users(id),
     latitude DEC(8, 6),

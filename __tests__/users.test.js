@@ -38,6 +38,7 @@ describe('resourcery-backend routes', () => {
     const res = await request(app).post('/api/v1/users/session').send(userObj);
 
     expect(res.body).toEqual({ message: 'You are signed in!', user });
+
   });
 
   it('should sign out a user', async () => {
@@ -54,5 +55,4 @@ describe('resourcery-backend routes', () => {
     const res = await agent.delete('/api/v1/users/session');
 
     expect(res.body).toEqual({ message: 'You are signed out.' });
-  });
-});
+
