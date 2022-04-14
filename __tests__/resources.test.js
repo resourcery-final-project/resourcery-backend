@@ -85,4 +85,34 @@ describe('resourcery-backend routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('an authenticated user can get a resource by ID and delete it', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const expected = await Resource.insert(resource);
+
+    const res = await request(app).delete(`/api/v1/resources/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
+
+  it('an authenticated user can update a resource by ID', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const expected = await Resource.insert(resource);
+
+    const res = await request(app)
+      .patch(`/api/v1/resources/${expected.id}`)
+      .send({ type: 'Banana' });
+
+    expect(res.body).toEqual({ ...expected, type: 'Banana' });
+  });
 });
