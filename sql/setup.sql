@@ -13,7 +13,6 @@ CREATE TABLE users (
 
 
 CREATE TABLE resources (
-
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id BIGINT REFERENCES users(id),
     latitude DEC(8, 6),
