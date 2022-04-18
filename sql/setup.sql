@@ -19,13 +19,26 @@ CREATE TABLE resources (
     longitude DEC(9, 6),
     type TEXT NOT NULL,
     description TEXT NOT NULL,
-    image TEXT NOT NULL,
+    image TEXT,
     hours TEXT NOT NULL,
     available BOOLEAN,
-    category TEXT NOT NULL
+    title TEXT NOT NULL,
+    address TEXT,
+    phone TEXT
 );
 
-INSERT INTO resources (latitude, longitude, type, description, image, hours, available, category)
+INSERT INTO resources (title, address, phone, description, hours, type)
 
 VALUES
-    ('42.069690', '666.666666', 'apple', 'Has Apples', 'www.image.com', '12p - 8p', true, 'Fruit Tree')
+    ('All Saints Episcopal Church', '4033 SE Woodstock Blvd. Portland, OR 97202', 'Main Line: 503-777-3829', 'Hot meals.','Hours 11:30 a.m. Sat.', 'Ready To Eat'),
+    (
+      'Blanchet House of Hospitality', '310 NW Glisan St. Portland, OR 97209', 'Main Line: 503-241-4340', 'Free hot meals. No questions asked.', 'Hours: 6:30-7:30 a.m. (breakfast), 11:30 a.m. -12:30 p.m. (lunch), 5-6 p.m. (dinner) Mon.- Sat.', 'Ready To Eat'
+    ),
+    (
+      'Cityteam Portland',
+      '526 SE Grand Ave. Portland, OR 97214',
+      'Main Line: 503-231-9334',
+      'Dining hall serving men, women and children.',
+      'CLOSED',
+      'Ready To Eat'
+    )
