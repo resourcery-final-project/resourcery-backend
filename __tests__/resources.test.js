@@ -54,7 +54,7 @@ describe('resourcery-backend routes', () => {
     });
   });
 
-  it('allows a logged in user to get all of their resources', async () => {
+  it('allows a logged in user to get all resources', async () => {
     const agent = request.agent(app);
 
     await UserService.insert(newUser);
@@ -77,11 +77,9 @@ describe('resourcery-backend routes', () => {
 
     await agent.post('/api/v1/users/session').send(newUser);
 
-    await agent.post('/api/v1/resources').send(resource);
-
     const expected = await Resource.insert(resource);
 
-    const res = await request(app).get(`/api/v1/resources/${expected.id}`);
+    const res = await agent.get(`/api/v1/resources/${expected.id}`);
 
     expect(res.body).toEqual(expected);
   });
@@ -95,10 +93,11 @@ describe('resourcery-backend routes', () => {
 
     const expected = await Resource.insert(resource);
 
-    const res = await request(app).delete(`/api/v1/resources/${expected.id}`);
+    const res = await agent.delete(`/api/v1/resources/${expected.id}`);
 
     expect(res.body).toEqual(expected);
   });
+
 
   it('an authenticated user can update a resource by ID', async () => {
     const agent = request.agent(app);
@@ -115,4 +114,4 @@ describe('resourcery-backend routes', () => {
 
     expect(res.body).toEqual({ ...expected, type: 'Banana' });
   });
-});
+
