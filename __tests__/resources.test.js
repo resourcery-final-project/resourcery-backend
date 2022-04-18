@@ -98,7 +98,6 @@ describe('resourcery-backend routes', () => {
     expect(res.body).toEqual(expected);
   });
 
-
   it('an authenticated user can update a resource by ID', async () => {
     const agent = request.agent(app);
 
@@ -114,4 +113,4 @@ describe('resourcery-backend routes', () => {
 
     expect(res.body).toEqual({ ...expected, type: 'Banana' });
   });
-
+});
