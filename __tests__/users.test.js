@@ -54,5 +54,7 @@ describe('resourcery-backend routes', () => {
     const res = await agent.delete('/api/v1/users/session');
 
     expect(res.body).toEqual({ message: 'You are signed out.' });
+
+    //z;
   });
 });
