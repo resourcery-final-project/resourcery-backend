@@ -13,13 +13,14 @@ const newUser = {
 const resource = {
   latitude: '42.069690',
   longitude: '666.666666',
-  type: 'apple',
+  title: 'apple',
   description: 'Has Apples',
   userId: '1',
   image: 'www.image.com',
   hours: '12p - 8p',
-  category: 'Fruit Tree',
+  type: 'Fruit Tree',
   available: true,
+  phone: 'Main Line: 333-333-3333',
 };
 
 describe('resourcery-backend routes', () => {
@@ -44,13 +45,14 @@ describe('resourcery-backend routes', () => {
       id: expect.any(String),
       latitude: '42.069690',
       longitude: '666.666666',
-      type: 'apple',
+      title: 'apple',
       description: 'Has Apples',
       userId: '1',
       image: 'www.image.com',
       hours: '12p - 8p',
-      category: 'Fruit Tree',
+      type: 'Fruit Tree',
       available: true,
+      phone: 'Main Line: 333-333-3333',
     });
   });
 

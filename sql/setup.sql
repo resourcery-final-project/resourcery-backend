@@ -20,11 +20,11 @@ CREATE TABLE resources (
     type TEXT NOT NULL,
     description TEXT NOT NULL,
     image TEXT,
-    hours TEXT NOT NULL,
+    hours TEXT,
     available BOOLEAN,
     title TEXT NOT NULL,
     address TEXT,
-    phone TEXT
+    phone VARCHAR
 );
 
 INSERT INTO resources (title, address, phone, description, hours, type)
