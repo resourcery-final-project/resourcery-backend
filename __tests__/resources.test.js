@@ -19,7 +19,18 @@ const resource = {
   image: 'www.image.com',
   hours: '12p - 8p',
   type: 'Fruit Tree',
-  available: true,
+  phone: 'Main Line: 333-333-3333',
+};
+
+const resource2 = {
+  latitude: '42.069690',
+  longitude: '666.666666',
+  title: 'apple',
+  description: 'Has Apples',
+  userId: '1',
+  image: 'www.image.com',
+  hours: '12p - 8p',
+  type: 'Food Box',
   phone: 'Main Line: 333-333-3333',
 };
 
@@ -51,7 +62,6 @@ describe('resourcery-backend routes', () => {
       image: 'www.image.com',
       hours: '12p - 8p',
       type: 'Fruit Tree',
-      available: true,
       phone: 'Main Line: 333-333-3333',
     });
   });
@@ -114,6 +124,20 @@ describe('resourcery-backend routes', () => {
       .send({ type: 'Banana' });
 
     expect(res.body).toEqual({ ...expected, type: 'Banana' });
+  });
+
+  it('gets a resource by type', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+    await Resource.insert(resource2);
+    const expected = await Resource.insert(resource);
+
+    const res = await agent.get(`/api/v1/resources/type/${expected.type}`);
+    console.log('resbody', res.body);
+    expect(res.body).toEqual([expected]);
   });
 });
 //trying to deploy
