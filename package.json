@@ -10,7 +10,8 @@
     "start": "node -r dotenv/config server.js",
     "start:watch": "nodemon -r dotenv/config server.js",
     "setup-db": "node -r dotenv/config setup-db.js",
-    "setup-heroku": "heroku run npm run setup-db"
+    "setup-heroku": "heroku run npm run setup-db",
+    "scrape": "node -r dotenv/config lib/utils/coordinatesConverter.js"
   },
   "jest": {
     "testEnvironment": "node"
@@ -34,6 +35,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
+    "better-queue": "^3.8.10",
     "cookie-parser": "^1.4.6",
     "cookieparser": "^0.1.0",
     "cors": "^2.8.5",
@@ -43,6 +45,7 @@
     "express": "^4.17.3",
     "jsdom": "^19.0.0",
     "jsonwebtoken": "^8.5.1",
+    "node-geocoder": "^4.0.0",
     "pg": "^8.7.3"
   }
 }
