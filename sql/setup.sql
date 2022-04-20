@@ -12,8 +12,8 @@ CREATE TABLE users (
 CREATE TABLE resources (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id BIGINT REFERENCES users(id),
-    latitude DEC(8, 6),
-    longitude DEC(9, 6),
+    latitude DEC,
+    longitude DEC,
     type TEXT NOT NULL,
     description TEXT NOT NULL,
     image TEXT,
@@ -75,7 +75,11 @@ VALUES
       'Food Box',
       '45.42888629999999',
       '-122.7785732'
-    ),
+    );
+
+    INSERT INTO resources (title, address, phone, description, hours, type)
+
+    VALUES
     (
       'Church of the Nazarene',
       '716 Taylor St Oregon City, OR 97045',
