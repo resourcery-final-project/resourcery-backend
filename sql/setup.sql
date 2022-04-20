@@ -23,7 +23,7 @@ CREATE TABLE resources (
     phone VARCHAR
 );
 
-INSERT INTO resources (title, address, phone, description, hours, type)
+INSERT INTO resources (title, address, phone, description, hours, type, longitude, latitude)
 
 VALUES
     (
@@ -32,7 +32,9 @@ VALUES
       'Main Line: 503-289-6615',
       'Food boxes. Service area from NE Broadway to N Lombard and NE 42nd to N Greeley.',
       'Hours: 5-7 p.m. Tues.; 11 a.m.-2 p.m. Wed., Sat. Closed 1st & 2nd Tues., 1st Wed., 1st Sat.',
-      'Food Box'
+      'Food Box',
+      '45.4795398',
+      '-122.6210061'
     ),
     (
       'Beaverton Seventh-Day Adventist',
@@ -40,7 +42,9 @@ VALUES
       '',
       'Food boxes.',
       'CLOSED',
-      'Food Box'
+      'Food Box',
+      '45.5264725',
+      '-122.6738201'
     ),
     (
       'Bethel Congregation United Church of Christ',
@@ -48,7 +52,9 @@ VALUES
       'Main Line: 503-591-9025',
       'Food pantry for low income Beaverton residents. Register with Care to Share (503) 591-9025.',
       'Hours: 11:30 a.m.-12:30 p.m. Mon., Thurs.; 6:30-7:30 p.m. Wed. Emergency food bags available 9 a.m.-3 p.m. Mon.-Thurs.',
-      'Food Box'
+      'Food Box',
+      '45.5189387',
+      '-122.6603985'
     ),
     (
       'Care to Share',
@@ -56,7 +62,9 @@ VALUES
       'Main Line: 503-591-9025',
       'Emergency food boxes for Beaverton residents. Utility assistance provided with shut-off notice. Services for the following zip codes only: 97003, 97005, 97006, 97007, 97008, 97078, 97225, 97229. Tigard zip codes (no utility assistance): 97223. Hillsboro zip codes (no utility asst.): 97123, 97124.',
       'Phone hours: 9 a.m.-2 p.m. Mon.-Fri. Call for appt. Call for energy assistance: 9-9:30 a.m. Mon.',
-      'Food Box'
+      'Food Box',
+      '45.460197',
+      '-122.5810875'
     ),
     (
       'Cascade Vineyard Church Food Pantry',
@@ -64,7 +72,9 @@ VALUES
       'Main Line: 503-684-8225',
       'Food pantry. Lottery system.',
       'Hours: Noon-3 p.m. Thurs.',
-      'Food Box'
+      'Food Box',
+      '45.42888629999999',
+      '-122.7785732'
     ),
     (
       'Church of the Nazarene',

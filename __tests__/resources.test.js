@@ -25,8 +25,8 @@ const resource = {
 const resource2 = {
   latitude: '42.069690',
   longitude: '666.666666',
-  title: 'apple',
-  description: 'Has Apples',
+  title: 'Food Box',
+  description: 'Has Food',
   userId: '1',
   image: 'www.image.com',
   hours: '12p - 8p',
@@ -50,9 +50,9 @@ describe('resourcery-backend routes', () => {
 
     await agent.post('/api/v1/users/session').send(newUser);
 
-    const res = await agent.post('/api/v1/resources').send(resource);
+    const { body } = await agent.post('/api/v1/resources').send(resource);
 
-    expect(res.body).toEqual({
+    expect(body).toEqual({
       id: expect.any(String),
       latitude: '42.069690',
       longitude: '666.666666',
@@ -91,10 +91,12 @@ describe('resourcery-backend routes', () => {
 
     const expected = await Resource.insert(resource);
 
-    const res = await agent.get(`/api/v1/resources/${expected.id}`);
+    const { body } = await agent.get(`/api/v1/resources/${expected.id}`);
 
-    expect(res.body).toEqual(expected);
+    expect(body).toEqual(expected);
   });
+
+  it('gets all the users resources', async () => {});
 
   it('an authenticated user can get a resource by ID and delete it', async () => {
     const agent = request.agent(app);
@@ -105,9 +107,9 @@ describe('resourcery-backend routes', () => {
 
     const expected = await Resource.insert(resource);
 
-    const res = await agent.delete(`/api/v1/resources/${expected.id}`);
+    const { body } = await agent.delete(`/api/v1/resources/${expected.id}`);
 
-    expect(res.body).toEqual(expected);
+    expect(body).toEqual(expected);
   });
 
   it('an authenticated user can update a resource by ID', async () => {
@@ -119,11 +121,11 @@ describe('resourcery-backend routes', () => {
 
     const expected = await Resource.insert(resource);
 
-    const res = await request(app)
+    const { body } = await request(app)
       .patch(`/api/v1/resources/${expected.id}`)
       .send({ type: 'Banana' });
 
-    expect(res.body).toEqual({ ...expected, type: 'Banana' });
+    expect(body).toEqual({ ...expected, type: 'Banana' });
   });
 
   it('gets a resource by type', async () => {
@@ -132,12 +134,49 @@ describe('resourcery-backend routes', () => {
     await UserService.insert(newUser);
 
     await agent.post('/api/v1/users/session').send(newUser);
+
     await Resource.insert(resource2);
+
     const expected = await Resource.insert(resource);
 
-    const res = await agent.get(`/api/v1/resources/type/${expected.type}`);
-    console.log('resbody', res.body);
-    expect(res.body).toEqual([expected]);
+    const { body } = await agent.get(`/api/v1/resources/type/${expected.type}`);
+
+    expect(body).toEqual([expected]);
+  });
+
+  it('gets all resources and orders ascending by type', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const res = await agent.get('/api/v1/resources/order/asc');
+
+    expect(res.body[0].type >= res.body[1].type).toBe(true);
+  });
+
+  it('gets all resources and orders decending by type', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const res = await agent.get('/api/v1/resources/order/desc');
+
+    expect(res.body[0].type <= res.body[1].type).toBe(true);
+  });
+
+  it('gets total count of resources', async () => {
+    const agent = request.agent(app);
+
+    await UserService.insert(newUser);
+
+    await agent.post('/api/v1/users/session').send(newUser);
+
+    const res = await agent.get('/api/v1/resources/count');
+    console.log(res.body);
   });
 });
 //trying to deploy
