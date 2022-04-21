@@ -144,30 +144,6 @@ describe('resourcery-backend routes', () => {
     expect(body).toEqual([expected]);
   });
 
-  it('gets all resources and orders ascending by type', async () => {
-    const agent = request.agent(app);
-
-    await UserService.insert(newUser);
-
-    await agent.post('/api/v1/users/session').send(newUser);
-
-    const res = await agent.get('/api/v1/resources/order/asc');
-
-    expect(res.body[0].type >= res.body[1].type).toBe(true);
-  });
-
-  it('gets all resources and orders decending by type', async () => {
-    const agent = request.agent(app);
-
-    await UserService.insert(newUser);
-
-    await agent.post('/api/v1/users/session').send(newUser);
-
-    const res = await agent.get('/api/v1/resources/order/desc');
-
-    expect(res.body[0].type <= res.body[1].type).toBe(true);
-  });
-
   it('gets total count of resources', async () => {
     const agent = request.agent(app);
 
@@ -179,5 +155,3 @@ describe('resourcery-backend routes', () => {
     console.log(res.body);
   });
 });
-//trying to deploy
-//to heroku
