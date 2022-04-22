@@ -13,6 +13,7 @@ const newUser = {
 const resource = {
   latitude: '42.069690',
   longitude: '666.666666',
+  address: '12 Pebble St.',
   title: 'apple',
   description: 'Has Apples',
   userId: '1',
@@ -56,6 +57,7 @@ describe('resourcery-backend routes', () => {
       id: expect.any(String),
       latitude: '42.069690',
       longitude: '666.666666',
+      address: '12 Pebble St.',
       title: 'apple',
       description: 'Has Apples',
       userId: '1',
