@@ -143,15 +143,4 @@ describe('resourcery-backend routes', () => {
 
     expect(body).toEqual([expected]);
   });
-
-  it('gets total count of resources', async () => {
-    const agent = request.agent(app);
-
-    await UserService.insert(newUser);
-
-    await agent.post('/api/v1/users/session').send(newUser);
-
-    const res = await agent.get('/api/v1/resources/count');
-    console.log(res.body);
-  });
 });
