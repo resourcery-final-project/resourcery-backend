@@ -18,6 +18,7 @@ Spencer Eagleton - Vancouver, WA
 | ------ | ------ | -------- | --------- | ---- | ----------- | ----- | ------- |
 | bigint | bigint | dec      | dec       | text | text        | text  | text    |
 
+
 ## User Table
 
 | ID     | username | #passwordhash |
