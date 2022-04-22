@@ -1,4 +1,4 @@
-resources = [
+export const resources = [
   {
     title: 'All Saints Episcopal Church',
     address: '4033 SE Woodstock Blvd. Portland, OR 97202',
