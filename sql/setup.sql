@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS users, resources, comments CASCADE;
 
 CREATE TABLE users (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    username TEXT NOT NULL,
+    username TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL
 );
 
